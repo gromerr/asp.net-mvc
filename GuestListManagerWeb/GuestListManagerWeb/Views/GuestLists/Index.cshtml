@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GuestListManagerWeb.Models.GuestList>
+
+@{
+    ViewBag.Title = "Guest list";
+}
+
+<h2>Guest list</h2>
+<div class="alert alert-info" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    @ViewBag.info
+</div>
+<p>
+    @Html.ActionLink("New invitation", "Create", new { area = "" }, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Save as XML", "DownloadXMLFile", new { area = "" }, new { @class = "btn btn-primary btn-sm" })
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<p>Persons invited to party</p>
+<table class="table">
+    <tr>
+        <th>
+            First name
+        </th>
+        <th>
+            Last name
+        </th>
+        <th>
+            Sex
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Responded)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Responded)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
