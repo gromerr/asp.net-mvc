@@ -223,6 +223,7 @@
       <DependentUpon>GuestListModel.edmx</DependentUpon>
       <LastGenOutput>GuestListModel.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\smartasp.net.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

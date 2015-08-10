@@ -103,9 +103,14 @@ namespace GuestListManagerWeb.Controllers
         {
             int exists = CountFoundGuests(guestList);
 
-            if (ModelState.IsValid && exists == 0)
+            if (ModelState.IsValid && exists <= 1)
             {
-                db.Entry(guestList).State = EntityState.Modified;
+                GuestList record = db.GuestLists.Find(guestList.Id);
+                record.LastName = guestList.LastName;
+                record.FirstName = guestList.FirstName;
+                record.SexId = guestList.SexId;
+                record.Responded = guestList.Responded;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
