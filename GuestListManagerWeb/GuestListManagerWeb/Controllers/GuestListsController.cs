@@ -20,7 +20,7 @@ namespace GuestListManagerWeb.Controllers
         // GET: GuestLists
         public ActionResult Index(string searchString)
         {
-            checkEqualGuestNumber();
+            CheckEqualGuestNumber();
             var guestLists = db.GuestLists.Include(g => g.Sex);
 
             if (!String.IsNullOrEmpty(searchString))
@@ -182,7 +182,7 @@ namespace GuestListManagerWeb.Controllers
         /// <summary>
         /// Check equal numbers of men and women invited to party.
         /// </summary>
-        private void checkEqualGuestNumber()
+        private void CheckEqualGuestNumber()
         {
             List<GuestList> maleList = db.GuestLists.Where(guest => guest.SexId.Equals(1)).ToList();
             List<GuestList> femaleList = db.GuestLists.Where(guest => guest.SexId.Equals(2)).ToList();
